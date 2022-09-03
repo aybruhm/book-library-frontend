@@ -1,7 +1,7 @@
 <template>
     <div class="books__header">
         <h2 class="books__title">
-            <router-link to="" class="text-white">Bibliothèque</router-link>
+            <router-link to="/books/" class="text-white">Bibliothèque</router-link>
         </h2>
         <p class="books__msg">a book library application</p>
 

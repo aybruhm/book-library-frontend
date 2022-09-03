@@ -1,27 +1,26 @@
 <template>
     <div>
-
-        <form method="post" class="d-none">
+        <form method="post">
             <h4 class="form__title">Create book</h4>
 
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Name of book">
+                <input type="text" v-model="name_of_book" class="form-control" placeholder="Name of book">
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="ISBN">
+                <input type="text" v-model="isbn" class="form-control" placeholder="ISBN">
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Firstname of Author">
+                <input type="text" v-model="first_name" class="form-control" placeholder="Firstname of Author">
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Lastname of Author">
+                <input type="text" v-model="last_name" class="form-control" placeholder="Lastname of Author">
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" type="button" @click="createNewBook()">
                     Submit
                 </button>
             </div>
@@ -30,15 +29,48 @@
 </template>
 
 <script>
-// import axios from "axios";
-// let baseURL = "http://127.0.0.1:8080/api/v1/books/";
+import axios from "axios";
+let baseURL = "http://127.0.0.1:8080/api/v1/";
 
 export default {
     name: 'CreateBook',
-    props: {},
     data() {
-        return {}
-    }
+        return {
+            name_of_book: "",
+            isbn: "",
+            first_name: "",
+            last_name: "",
+        }
+    },
+    methods: {
+        createNewBook() {
+            axios({
+                method: "POST",
+                url: `${baseURL}book/`,
+                data: {
+                    "name": this.name_of_book,
+                    "isbn": this.isbn,
+                    "author": {
+                        "first_name": this.first_name,
+                        "last_name": this.last_name
+                    }
+                },
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then((res) => {
+                    this.name_of_book = "";
+                    this.isbn = "";
+                    this.first_name = "";
+                    this.last_name = "";
+                    alert(res.data.message);
+                })
+                .catch((err) => {
+                    console.log("Erorr: ", err);
+                });
+        }
+    },
 }
 </script>
 
@@ -64,5 +96,11 @@ form button.btn {
     width: 100%;
     background-color: #525252;
     font-size: 13px;
+}
+
+@media screen and (max-width: 489px) {
+    form {
+        max-width: 100%;
+    }
 }
 </style>
