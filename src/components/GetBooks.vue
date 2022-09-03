@@ -38,14 +38,19 @@ export default {
             books: []
         }
     },
-    async created() {
-        try {
-            const res = await axios.get(`${baseURL}books/`);
-            this.books = res.data.data || [];
-        } catch (e) {
-            console.log("Err: ", e);
+    methods: {
+        async fetchBooks() {
+            try {
+                const res = await axios.get(`${baseURL}books/`);
+                this.books = res.data.data || [];
+            } catch (e) {
+                console.log("Err: ", e);
+            }
         }
-    }
+    },
+    mounted() {
+        this.fetchBooks();
+    },
 }
 </script>
 
