@@ -4,12 +4,18 @@
         <p class="books__msg">a book library application</p>
 
         <div class="books__meta">
-            <button class="meta__link" @click="(toggleCreateAuthor)">Create Author</button>
-            <button class="meta__link" @click="(toggleCreateBook)">Create Book</button>
+            <button class="meta__link">
+                <router-link to="/author/" class="link-text">Create Author</router-link>
+            </button>
+            <button class="meta__link">
+                <router-link to="/book/" class="link-text">Create Book</router-link>
+            </button>
         </div>
 
         <div class="books__meta">
-            <button class="meta__link meta__link__w-100">Get Authors</button>
+            <button class="meta__link">
+                <router-link to="/authors/" class="link-text">Get Authors</router-link>
+            </button>
         </div>
     </div>
 
@@ -24,12 +30,14 @@
                 <h4 class="book__name">{{ book.name }}</h4>
                 <p class="text-muted">{{ book.isbn }}</p>
                 <h6 class="book__isbn">
-                    <a href="" class="book__author">{{ book.author.first_name }} {{ book.author.last_name }}</a>
+                    <router-link :to="`/author/${book.author.id}/`" class="book__author">
+                        {{ book.author.first_name }} {{ book.author.last_name }}
+                    </router-link>
                 </h6>
 
                 <div class="book__meta">
-                    <a href="" class="book__more">View</a>
-                    <a href="" class="book__more">Update</a>
+                    <router-link :to="`/book/${book.id}/`" class="book__more">View</router-link>
+                    <router-link :to="`/book/${book.id}/`" class="book__more">Update</router-link>
                 </div>
             </li>
         </ul>
@@ -107,6 +115,10 @@ ul.books {
 a.book__author {
     color: #575252;
     text-decoration: underline;
+}
+
+a.link-text {
+    color: #080707;
 }
 
 li.book {
