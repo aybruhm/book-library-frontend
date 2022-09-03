@@ -4,39 +4,17 @@
         <p class="books__msg">{{ msg }}</p>
 
         <div class="books__meta">
-            <a href="" class="meta__link">Create Author</a>
-            <a href="" class="meta__link">Create Book</a>
+            <button class="meta__link" @click="(toggleCreateAuthor)">Create Author</button>
+            <button class="meta__link" @click="(toggleCreateBook)">Create Book</button>
         </div>
     </div>
 
     <div class="books__library container">
-        <!-- 
-        <form method="post">
-            <h4 class="form__title">Create book</h4>
 
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Name of book">
-            </div>
+        <!-- Create Book -->
+        <CreateBook form-class="d-none" />
 
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="ISBN">
-            </div>
-
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Firstname of Author">
-            </div>
-
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Lastname of Author">
-            </div>
-
-            <div class="form-group">
-                <button class="btn btn-primary">
-                    Submit
-                </button>
-            </div>
-        </form> -->
-
+        <!-- List of Books -->
         <ul class="books">
             <li class="book card" v-for="book in books" :key="book.id">
                 <h4 class="book__name">{{ book.name }}</h4>
@@ -59,22 +37,37 @@
 import axios from "axios";
 let baseURL = "http://127.0.0.1:8080/api/v1/books/";
 
+
+import CreateBook from "./CreateBook.vue";
+
 export default {
     name: 'GetBooks',
+    components: {
+        CreateBook,
+    },
     props: {
-        msg: String
+        msg: String,
     },
     data() {
         return {
             books: []
         }
     },
-    async created() {
+    async mounted() {
         try {
             const res = await axios.get(`${baseURL}`);
+            console.log(res.data)
             this.books = res.data.data;
         } catch (e) {
             console.log("Err: ", e);
+        }
+    },
+    methods: {
+        toggleCreateBook(e) {
+            console.log("Book Event: ", e);
+        },
+        toggleCreateAuthor(e) {
+            console.log("Author Event: ", e);
         }
     }
 }
@@ -131,7 +124,7 @@ div.books__meta {
 }
 
 a.book__more,
-a.meta__link {
+button.meta__link {
     color: #080707;
     background-color: #525252;
     padding: 6px 15px;
@@ -139,32 +132,13 @@ a.meta__link {
     margin-right: 15px;
 }
 
+button.meta__link {
+    border-color: transparent;
+}
+
 
 a.book__more:last-child {
     margin-right: 0px;
-}
-
-form {
-    max-width: 50%;
-    margin: auto;
-    margin-top: 40px;
-}
-
-h4.form__title {
-    margin-bottom: 20px;
-}
-
-form input.form-control {
-    margin-bottom: 20px;
-    height: 40px;
-    border-radius: 4px;
-}
-
-form button.btn {
-    padding: 12px 40px;
-    width: 100%;
-    background-color: #525252;
-    font-size: 13px;
 }
 
 @media screen and (max-width: 789px) {
