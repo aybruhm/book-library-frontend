@@ -1,28 +1,9 @@
 <template>
     <div class="books__header">
-        <h2 class="books__title">Bibliothèque</h2>
-        <p class="books__msg">a book library application</p>
-
-        <div class="books__meta">
-            <button class="meta__link">
-                <router-link to="/author/" class="link-text">Create Author</router-link>
-            </button>
-            <button class="meta__link">
-                <router-link to="/book/" class="link-text">Create Book</router-link>
-            </button>
-        </div>
-
-        <div class="books__meta">
-            <button class="meta__link">
-                <router-link to="/authors/" class="link-text">Get Authors</router-link>
-            </button>
-        </div>
+        <h2 class="books__title">Books</h2>
     </div>
 
     <div class="books__library container">
-
-        <!-- Create Book -->
-        <CreateBook />
 
         <!-- List of Books -->
         <ul class="books">
@@ -46,8 +27,6 @@
 
 
 <script>
-// component imports
-import CreateBook from "./CreateBook.vue";
 
 import axios from "axios";
 
@@ -55,9 +34,6 @@ const baseURL = "http://127.0.0.1:8080/api/v1/";
 
 export default {
     name: 'GetBooks',
-    components: {
-        CreateBook,
-    },
     data() {
         return {
             books: []
@@ -69,14 +45,6 @@ export default {
             this.books = res.data.data || [];
         } catch (e) {
             console.log("Err: ", e);
-        }
-    },
-    methods: {
-        toggleCreateBook(e) {
-            console.log("Book Event: ", e);
-        },
-        toggleCreateAuthor(e) {
-            console.log("Author Event: ", e);
         }
     }
 }
@@ -91,12 +59,6 @@ h2.books__title {
     font-size: 42px;
     font-weight: 600;
 }
-
-p.books__msg {
-    font-size: 22px;
-    font-style: italic;
-}
-
 
 div.books__library {
     text-align: center;
