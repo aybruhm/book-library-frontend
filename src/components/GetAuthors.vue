@@ -30,14 +30,19 @@ export default {
             authors: []
         }
     },
-    async created() {
-        try {
-            const res = await axios.get(`${baseURL}authors/`);
-            this.authors = res.data.data || [];
-        } catch (e) {
-            console.log("Err: ", e);
-        }
-    }
+    methods: {
+        async fetchAuthors() {
+            try {
+                const res = await axios.get(`${baseURL}authors/`);
+                this.authors = res.data.data || [];
+            } catch (e) {
+                console.log("Err: ", e);
+            }
+        },
+    },
+    mounted() {
+        this.fetchAuthors();
+    },
 }
 </script>
 
