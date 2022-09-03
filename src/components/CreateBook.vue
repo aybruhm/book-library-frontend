@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <form method="post" class={{ form_class }}>
+        <form method="post" class="d-none">
             <h4 class="form__title">Create book</h4>
 
             <div class="form-group">
@@ -35,9 +35,7 @@
 
 export default {
     name: 'CreateBook',
-    props: {
-        form_class: String,
-    },
+    props: {},
     data() {
         return {}
     }
