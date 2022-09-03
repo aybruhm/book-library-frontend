@@ -1,14 +1,14 @@
 <template>
-  <GetBooks />
+  <BookHome />
 </template>
 
 <script>
-import GetBooks from "./components/GetBooks.vue";
+import BookHome from "./components/BookHome.vue";
 
 export default {
   name: 'App',
   components: {
-    GetBooks,
+    BookHome,
   }
 }
 </script>
