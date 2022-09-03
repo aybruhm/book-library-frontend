@@ -41,7 +41,9 @@
             <li class="book card" v-for="book in books" :key="book.id">
                 <h4 class="book__name">{{ book.name }}</h4>
                 <p class="text-muted">{{ book.isbn }}</p>
-                <h6 class="book__isbn">{{ book.author.first_name }} {{ book.author.last_name }}</h6>
+                <h6 class="book__isbn">
+                    <a href="" class="book__author">{{ book.author.first_name }} {{ book.author.last_name }}</a>
+                </h6>
 
                 <div class="book__meta">
                     <a href="" class="book__more">View</a>
@@ -107,6 +109,11 @@ ul.books {
     padding-left: 0%;
 }
 
+a.book__author {
+    color: #575252;
+    text-decoration: underline;
+}
+
 li.book {
     padding: 20px;
     justify-content: center;
@@ -131,6 +138,7 @@ a.meta__link {
     border-radius: 5px;
     margin-right: 15px;
 }
+
 
 a.book__more:last-child {
     margin-right: 0px;
