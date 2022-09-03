@@ -16,7 +16,7 @@
 
         <!-- List of Books -->
         <ul class="books">
-            <li class="book card" v-for="book in books" :key="book.id">
+            <li class="book card" v-for="book in fetchedBooks" :key="book.id">
                 <h4 class="book__name">{{ book.name }}</h4>
                 <p class="text-muted">{{ book.isbn }}</p>
                 <h6 class="book__isbn">
@@ -50,13 +50,12 @@ export default {
     },
     data() {
         return {
-            books: []
+            fetchedBooks: []
         }
     },
-    async mounted() {
+    async created() {
         try {
             const res = await axios.get(`${baseURL}`);
-            console.log(res.data)
             this.books = res.data.data;
         } catch (e) {
             console.log("Err: ", e);
