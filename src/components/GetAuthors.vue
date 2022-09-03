@@ -11,8 +11,7 @@
                 <h4 class="book__name">{{ author.first_name }} {{ author.last_name }}</h4>
 
                 <div class="book__meta">
-                    <router-link :to="`/author/${author.id}/`" class="book__more">View</router-link>
-                    <router-link :to="`/author/${author.id}/`" class="book__more">Update</router-link>
+                    <router-link :to="`/author/${author.id}/`" class="book__more">View / Update</router-link>
                 </div>
             </li>
         </ul>

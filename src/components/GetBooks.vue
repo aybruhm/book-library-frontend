@@ -17,8 +17,7 @@
                 </h6>
 
                 <div class="book__meta">
-                    <router-link :to="`/book/${book.id}/`" class="book__more">View</router-link>
-                    <router-link :to="`/book/${book.id}/`" class="book__more">Update</router-link>
+                    <router-link :to="`/book/${book.id}/`" class="book__more">View / Update</router-link>
                 </div>
             </li>
         </ul>
@@ -89,6 +88,7 @@ li.book {
     flex-wrap: wrap;
     width: 30%;
     margin: auto;
+    margin-bottom: 30px;
     background-color: #08070736;
 }
 
