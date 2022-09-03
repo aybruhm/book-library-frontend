@@ -165,6 +165,7 @@ form button.btn {
 @media screen and (max-width: 489px) {
     form {
         max-width: 100%;
+        padding-bottom: 60px;
     }
 
     li.book {
