@@ -1,5 +1,5 @@
 <template>
-  <GetBooks msg="a book library application" />
+  <GetBooks />
 </template>
 
 <script>
