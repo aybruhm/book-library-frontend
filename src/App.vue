@@ -1,26 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <GetBooks msg="a book library application" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import GetBooks from "./components/GetBooks.vue";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    GetBooks
   }
 }
 </script>
 
 <style>
+body {
+
+  background: #242424 !important;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #fff;
   margin-top: 60px;
 }
 </style>
