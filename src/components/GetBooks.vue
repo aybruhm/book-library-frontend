@@ -1,22 +1,26 @@
 <template>
     <div class="books__header">
         <h2 class="books__title">Bibliothèque</h2>
-        <p class="books__msg">{{ msg }}</p>
+        <p class="books__msg">a book library application</p>
 
         <div class="books__meta">
             <button class="meta__link" @click="(toggleCreateAuthor)">Create Author</button>
             <button class="meta__link" @click="(toggleCreateBook)">Create Book</button>
+        </div>
+
+        <div class="books__meta">
+            <button class="meta__link meta__link__w-100">Get Authors</button>
         </div>
     </div>
 
     <div class="books__library container">
 
         <!-- Create Book -->
-        <CreateBook form-class="d-none" />
+        <CreateBook />
 
         <!-- List of Books -->
         <ul class="books">
-            <li class="book card" v-for="book in fetchedBooks" :key="book.id">
+            <li class="book card" v-for="book in books" :key="book.id">
                 <h4 class="book__name">{{ book.name }}</h4>
                 <p class="text-muted">{{ book.isbn }}</p>
                 <h6 class="book__isbn">
@@ -34,30 +38,27 @@
 
 
 <script>
-import axios from "axios";
-let baseURL = "http://127.0.0.1:8080/api/v1/books/";
-
-
+// component imports
 import CreateBook from "./CreateBook.vue";
+
+import axios from "axios";
+
+const baseURL = "http://127.0.0.1:8080/api/v1/";
 
 export default {
     name: 'GetBooks',
     components: {
         CreateBook,
     },
-    props: {
-        msg: String,
-    },
     data() {
         return {
-            fetchedBooks: []
+            books: []
         }
     },
     async created() {
         try {
-            const res = await axios.get(baseURL);
-            console.log("Res: ", res.data);
-            this.books = res.data.data;
+            const res = await axios.get(`${baseURL}books/`);
+            this.books = res.data.data || [];
         } catch (e) {
             console.log("Err: ", e);
         }
@@ -85,6 +86,7 @@ h2.books__title {
 
 p.books__msg {
     font-size: 22px;
+    font-style: italic;
 }
 
 
