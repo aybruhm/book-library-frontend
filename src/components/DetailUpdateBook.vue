@@ -34,7 +34,7 @@
 
             <div class="form-group">
                 <button class="btn btn-primary" type="button" @click="updateSingleBook()">
-                    Submit
+                    Update
                 </button>
             </div>
         </form>
@@ -97,10 +97,6 @@ export default {
                 }
             })
                 .then((res) => {
-                    this.name_of_book = "";
-                    this.isbn = "";
-                    this.first_name = "";
-                    this.last_name = "";
                     alert(res.data.message);
                 })
                 .catch((err) => {
