@@ -35,7 +35,7 @@
 
 <script>
 import axios from "axios";
-let baseURL = "https://books-library.up.railway.app/api/v1/books/";
+let baseURL = "http://127.0.0.1:8080/api/v1/books/";
 
 
 import CreateBook from "./CreateBook.vue";
@@ -55,7 +55,8 @@ export default {
     },
     async created() {
         try {
-            const res = await axios.get(`${baseURL}`);
+            const res = await axios.get(baseURL);
+            console.log("Res: ", res.data);
             this.books = res.data.data;
         } catch (e) {
             console.log("Err: ", e);
