@@ -38,32 +38,10 @@
         </form> -->
 
         <ul class="books">
-            <li class="book card">
-                <h4 class="book__name">Glitch</h4>
-                <p class="text-muted">6271920013</p>
-                <h6 class="book__isbn">Victor Mairo</h6>
-
-                <div class="book__meta">
-                    <a href="" class="book__more">View</a>
-                    <a href="" class="book__more">Update</a>
-                </div>
-            </li>
-
-            <li class="book card">
-                <h4 class="book__name">Glitch</h4>
-                <p class="text-muted">6271920013</p>
-                <h6 class="book__isbn">Victor Mairo</h6>
-
-                <div class="book__meta">
-                    <a href="" class="book__more">View</a>
-                    <a href="" class="book__more">Update</a>
-                </div>
-            </li>
-
-            <li class="book card">
-                <h4 class="book__name">Glitch</h4>
-                <p class="text-muted">6271920013</p>
-                <h6 class="book__isbn">Victor Mairo</h6>
+            <li class="book card" v-for="book in books" :key="book.id">
+                <h4 class="book__name">{{ book.name }}</h4>
+                <p class="text-muted">{{ book.isbn }}</p>
+                <h6 class="book__isbn">{{ book.author.first_name }} {{ book.author.last_name }}</h6>
 
                 <div class="book__meta">
                     <a href="" class="book__more">View</a>
@@ -76,10 +54,26 @@
 
 
 <script>
+import axios from "axios";
+let baseURL = "http://127.0.0.1:8080/api/v1/books/";
+
 export default {
     name: 'GetBooks',
     props: {
         msg: String
+    },
+    data() {
+        return {
+            books: []
+        }
+    },
+    async created() {
+        try {
+            const res = await axios.get(`${baseURL}`);
+            this.books = res.data.data;
+        } catch (e) {
+            console.log("Err: ", e);
+        }
     }
 }
 </script>
@@ -117,9 +111,8 @@ li.book {
     padding: 20px;
     justify-content: center;
     flex-wrap: wrap;
-    width: 50%;
+    width: 30%;
     margin: auto;
-    margin-right: 30px;
     background-color: #08070736;
 }
 
@@ -166,7 +159,7 @@ form button.btn {
     font-size: 13px;
 }
 
-@media screen and (max-width: 489px) {
+@media screen and (max-width: 789px) {
     ul.books {
         justify-content: center;
     }
