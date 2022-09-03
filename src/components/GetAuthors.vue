@@ -21,7 +21,7 @@
 <script>
 import axios from "axios";
 
-const baseURL = "http://127.0.0.1:8080/api/v1/";
+const baseURL = "https://books-library.up.railway.app/api/v1/";
 
 export default {
     name: 'GetAuthors',
@@ -92,37 +92,37 @@ li.book {
 div.book__meta,
 div.books__meta {
     display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+a.book__more,
+button.meta__link {
+    color: #080707;
+    background-color: #525252;
+    padding: 6px 15px;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+button.meta__link {
+    border-color: transparent;
+}
+
+
+a.book__more:last-child {
+    margin-right: 0px;
+}
+
+@media screen and (max-width: 789px) {
+    ul.books {
         justify-content: center;
-        margin-top: 10px;
     }
-    
-    a.book__more,
-    button.meta__link {
-        color: #080707;
-        background-color: #525252;
-        padding: 6px 15px;
-        border-radius: 5px;
-        margin-right: 15px;
-    }
-    
-    button.meta__link {
-        border-color: transparent;
-    }
-    
-    
-    a.book__more:last-child {
+
+    li.book {
+        width: 100%;
+        margin-bottom: 30px;
         margin-right: 0px;
     }
-    
-    @media screen and (max-width: 789px) {
-        ul.books {
-            justify-content: center;
-        }
-    
-        li.book {
-            width: 100%;
-            margin-bottom: 30px;
-            margin-right: 0px;
-        }
-    }
+}
 </style>
