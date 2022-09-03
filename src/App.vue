@@ -8,14 +8,13 @@ import GetBooks from "./components/GetBooks.vue";
 export default {
   name: 'App',
   components: {
-    GetBooks
+    GetBooks,
   }
 }
 </script>
 
 <style>
 body {
-
   background: #242424 !important;
 }
 
