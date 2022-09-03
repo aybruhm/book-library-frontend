@@ -2,12 +2,18 @@ import { createWebHistory, createRouter } from "vue-router";
 const routes = [
     {
         path: "/",
+        name: "home",
+        component: () => import("./components/BookHome")
+    },
+    {
+        path: "/books/",
         alias: "/books/",
         name: "books",
         component: () => import("./components/GetBooks")
     },
     {
         path: "/authors/",
+        alias: "/authors/",
         name: "authors",
         component: () => import("./components/GetAuthors")
     },
@@ -23,6 +29,7 @@ const routes = [
     },
     {
         path: "/author/",
+        alias: "/author/",
         name: "author",
         component: () => import("./components/CreateAuthor")
     },
