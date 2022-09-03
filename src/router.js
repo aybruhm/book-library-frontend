@@ -20,11 +20,13 @@ const routes = [
     },
     {
         path: "/book/:id/",
+        alias: "/book/:id/",
         name: "book-details",
         component: () => import("./components/DetailUpdateBook")
     },
     {
         path: "/author/:id/",
+        alias: "/author/:id/",
         name: "author-details",
         component: () => import("./components/DetailUpdateAuthor")
     },
